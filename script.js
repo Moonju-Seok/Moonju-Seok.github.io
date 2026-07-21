@@ -202,21 +202,47 @@ function step() {
 
 function spawnTerrain() {
   if (gameState !== "running") return;
-  terrain = new Set();
   const head = snake[0];
-  let attempts = 0;
-  while (terrain.size < 8 && attempts < 800) {
-    attempts += 1;
-    const candidate = { x: Math.floor(Math.random() * BOARD_SIZE), y: Math.floor(Math.random() * BOARD_SIZE) };
-    const farEnough = Math.abs(candidate.x - head.x) + Math.abs(candidate.y - head.y) > 4;
-    if (farEnough && !isOccupied(candidate)) terrain.add(keyFor(candidate));
+  let safeTerrain = new Set();
+  for (let layoutAttempt = 0; layoutAttempt < 20 && safeTerrain.size < 8; layoutAttempt += 1) {
+    const candidateTerrain = new Set();
+    let attempts = 0;
+    while (candidateTerrain.size < 8 && attempts < 800) {
+      attempts += 1;
+      const candidate = { x: Math.floor(Math.random() * BOARD_SIZE), y: Math.floor(Math.random() * BOARD_SIZE) };
+      const candidateKey = keyFor(candidate);
+      const farEnough = Math.abs(candidate.x - head.x) + Math.abs(candidate.y - head.y) > 4;
+      const overlapsSnake = snake.some((segment) => keyFor(segment) === candidateKey);
+      const overlapsFood = food && keyFor(food) === candidateKey;
+      if (farEnough && !candidateTerrain.has(candidateKey) && !overlapsSnake && !overlapsFood) candidateTerrain.add(candidateKey);
+    }
+    if (hasSafeRoute(candidateTerrain)) safeTerrain = candidateTerrain;
   }
+  terrain = safeTerrain;
   render();
   window.clearTimeout(terrainExpiryTimer);
   terrainExpiryTimer = window.setTimeout(() => {
     terrain = new Set();
     render();
   }, TERRAIN_LIFETIME);
+}
+
+function hasSafeRoute(candidateTerrain) {
+  if (!snake[0]) return false;
+  const queue = [snake[0]];
+  const visited = new Set([keyFor(snake[0])]);
+  const body = new Set(snake.slice(1).map(keyFor));
+  while (queue.length) {
+    const point = queue.shift();
+    for (const delta of Object.values(DIRECTIONS)) {
+      const next = { x: point.x + delta.x, y: point.y + delta.y };
+      const nextKey = keyFor(next);
+      if (!isInside(next) || visited.has(nextKey) || candidateTerrain.has(nextKey) || body.has(nextKey)) continue;
+      visited.add(nextKey);
+      queue.push(next);
+    }
+  }
+  return visited.size >= BOARD_SIZE;
 }
 
 function setDirection(name) {
