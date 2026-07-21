@@ -62,13 +62,26 @@ h1 span, h2 em { color: var(--pink); font-family: Georgia, serif; font-weight: 4
 .large-copy { font-size: clamp(1.7rem, 3vw, 2.5rem); letter-spacing: -.04em; line-height: 1.2; }
 .large-copy strong { color: var(--pink); font-family: Georgia, serif; font-weight: 400; }
 .muted-copy { color: var(--muted); font-size: .88rem; line-height: 1.8; }
+.profile-note { border-left: 1px solid var(--line); padding-left: 1.5rem; }
+.profile-note p { color: var(--muted); font-family: "Courier New", monospace; font-size: .72rem; line-height: 1.8; margin: 0; }
 .compact-heading { align-items: end; display: flex; justify-content: space-between; }
 .compact-heading h2 { margin: 0; }
+.experience-list { border-top: 1px solid var(--line); }
+.experience-item { display: grid; gap: 1rem; grid-template-columns: 4rem 1fr; padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+.experience-index { color: var(--pink); font-family: "Courier New", monospace; font-size: .8rem; }
+.experience-item h3, .research-card h3 { font-size: 1.05rem; margin: 0 0 .4rem; }
+.experience-role { color: var(--ink); font-size: .78rem; margin: 0 0 .5rem; }
+.experience-item .muted-copy { margin-bottom: 0; }
+.skills-panel { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; margin-top: 2rem; }
+.skills-panel > div { background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; padding: 1.25rem; }
+.skills-panel p { font-size: .82rem; line-height: 1.8; margin: 0; }
 .project-card { align-items: center; border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); display: grid; gap: 1rem; grid-template-columns: 4rem 1fr auto; padding: 1.5rem 0; }
 .project-number, .project-arrow { color: var(--pink); font-family: "DM Mono", monospace; font-size: .8rem; }
 .project-card h3 { font-size: 1.05rem; margin-bottom: .35rem; }
 .project-card p { color: var(--muted); font-size: .82rem; margin: 0; }
 .project-arrow { font-size: 1.4rem; }
+.research-card { align-items: start; border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); display: grid; gap: 1rem; grid-template-columns: 4rem 1fr; padding: 1.5rem 0; }
+.research-card .muted-copy { margin: 0; }
 .contact-section { padding-bottom: clamp(5rem, 12vw, 11rem); }
 
 .game-section { background: var(--ink); border-radius: 2rem 2rem 0 0; color: white; display: grid; gap: clamp(2rem, 7vw, 7rem); grid-template-columns: .8fr 1.2fr; padding: clamp(3rem, 8vw, 7rem) clamp(1rem, 5vw, 5rem); }
@@ -100,6 +113,7 @@ h1 span, h2 em { color: var(--pink); font-family: Georgia, serif; font-weight: 4
   .hero { gap: 3rem; grid-template-columns: 1fr; }
   .hero-card { margin: 0 auto; max-width: 22rem; order: -1; }
   .about-content { margin-left: 0; }
+  .profile-note { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 1rem; }
   .game-section { grid-template-columns: 1fr; }
   .game-intro h2 { margin-bottom: 1rem; }
   .touch-controls { display: block; }
@@ -112,6 +126,7 @@ h1 span, h2 em { color: var(--pink); font-family: Georgia, serif; font-weight: 4
   .hero { min-height: auto; padding-top: 3.5rem; }
   .hero-card { max-width: 17rem; }
   .about-content { grid-template-columns: 1fr; }
+  .skills-panel { grid-template-columns: 1fr; }
   .compact-heading { align-items: start; flex-direction: column; gap: 1rem; }
   .game-toolbar { grid-template-columns: 1fr 1fr; row-gap: 1rem; }
   .game-status { grid-column: 1 / -1; }
