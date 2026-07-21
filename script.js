@@ -24,7 +24,8 @@ if (menuToggle && primaryNav) {
 }
 
 const BOARD_SIZE = 25;
-const MOVE_INTERVAL = 500;
+const CELLS_PER_SECOND = 6;
+const MOVE_INTERVAL = 1000 / CELLS_PER_SECOND;
 const TERRAIN_INTERVAL = 10000;
 const TERRAIN_LIFETIME = 4000;
 const DIRECTIONS = {
@@ -204,7 +205,7 @@ function spawnTerrain() {
   terrain = new Set();
   const head = snake[0];
   let attempts = 0;
-  while (terrain.size < 2 && attempts < 200) {
+  while (terrain.size < 8 && attempts < 800) {
     attempts += 1;
     const candidate = { x: Math.floor(Math.random() * BOARD_SIZE), y: Math.floor(Math.random() * BOARD_SIZE) };
     const farEnough = Math.abs(candidate.x - head.x) + Math.abs(candidate.y - head.y) > 4;
