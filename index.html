@@ -3,34 +3,103 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="석문주 개인 프로페셔널 웹사이트">
-    <title>석문주 | Professional Profile</title>
+    <meta name="description" content="석문주의 개인 프로페셔널 웹사이트">
+    <title>석문주 | Personal Profile</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top">석문주</a>
-      <nav aria-label="주요 메뉴">
-        <a href="#profile">Profile</a>
-        <a href="#games">Games</a>
+    <header class="site-header" id="home">
+      <a class="brand" href="#home" aria-label="홈으로 이동"><span class="brand-mark">S</span><span>석문주</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">메뉴</button>
+      <nav id="primary-nav" class="primary-nav" aria-label="주요 메뉴">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-game-link" href="#games">Games</a>
       </nav>
     </header>
 
-    <main id="top">
-      <section id="profile" class="hero" aria-labelledby="profile-title">
-        <p class="eyebrow">Professional Profile</p>
-        <h1 id="profile-title">석문주</h1>
-        <p class="role">삼성전자 MX 사업부</p>
+    <main>
+      <section class="hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Personal profile · 2026</p>
+          <h1 id="hero-title">안녕하세요,<br><span>석문주</span>입니다.</h1>
+          <p class="hero-lede">삼성전자 MX 사업부 소속</p>
+          <a class="button button-primary" href="#about">프로필 보기 <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-card" aria-hidden="true">
+          <span class="hero-orbit orbit-one"></span>
+          <span class="hero-orbit orbit-two"></span>
+          <span class="hero-initial">S</span>
+          <span class="hero-caption">OPEN<br>TO IDEAS</span>
+        </div>
       </section>
 
-      <section id="games" class="section-card" aria-labelledby="games-title">
-        <p class="eyebrow">Playground</p>
-        <h2 id="games-title">Games</h2>
-        <p>지렁이 게임이 준비될 공간입니다.</p>
+      <section id="about" class="content-section section-shell" aria-labelledby="about-title">
+        <div class="section-heading">
+          <p class="eyebrow">01 / About</p>
+          <h2 id="about-title">기록하고,<br><em>만들고,</em> 공유합니다.</h2>
+        </div>
+        <div class="about-content">
+          <p class="large-copy">석문주<br><strong>삼성전자 MX 사업부</strong></p>
+          <p class="muted-copy">프로필 자료는 이름과 소속만 공개합니다. 추가 소개·경력·기술 정보는 [사람 확인 필요]입니다.</p>
+        </div>
+      </section>
+
+      <section id="projects" class="content-section section-shell" aria-labelledby="projects-title">
+        <div class="section-heading compact-heading">
+          <p class="eyebrow">02 / Selected</p>
+          <h2 id="projects-title">Projects</h2>
+        </div>
+        <article class="project-card">
+          <div class="project-number">01</div>
+          <div>
+            <h3>프로젝트 정보</h3>
+            <p>[사람 확인 필요]</p>
+          </div>
+          <span class="project-arrow" aria-hidden="true">↗</span>
+        </article>
+      </section>
+
+      <section id="contact" class="content-section section-shell contact-section" aria-labelledby="contact-title">
+        <div class="section-heading compact-heading">
+          <p class="eyebrow">03 / Contact</p>
+          <h2 id="contact-title">Say hello.</h2>
+        </div>
+        <p class="muted-copy">연락처 정보는 [사람 확인 필요]입니다.</p>
+      </section>
+
+      <section id="games" class="game-section section-shell" aria-labelledby="games-title">
+        <div class="game-intro">
+          <p class="eyebrow">04 / Playground</p>
+          <h2 id="games-title">Snake<br><em>run.</em></h2>
+          <p class="muted-copy">25×25 보드에서 먹이를 모아보세요.<br>화살표·WASD 또는 화면 버튼으로 움직입니다.</p>
+        </div>
+        <div class="game-card">
+          <div class="game-toolbar">
+            <div><span class="stat-label">SCORE</span><strong id="score">000</strong></div>
+            <div><span class="stat-label">BEST</span><strong id="best-score">000</strong></div>
+            <div id="game-status" class="game-status" role="status" aria-live="polite">READY</div>
+          </div>
+          <div id="game-board" class="game-board" role="application" aria-label="지렁이 게임 보드"></div>
+          <div class="game-actions">
+            <button id="start-game" class="button button-primary" type="button">Start game</button>
+            <button id="pause-game" class="button button-quiet" type="button" disabled>Pause</button>
+          </div>
+          <div class="touch-controls" aria-label="터치 방향 조작">
+            <button type="button" data-direction="up" aria-label="위로 이동">↑</button>
+            <div><button type="button" data-direction="left" aria-label="왼쪽으로 이동">←</button><button type="button" data-direction="down" aria-label="아래로 이동">↓</button><button type="button" data-direction="right" aria-label="오른쪽으로 이동">→</button></div>
+          </div>
+          <p class="game-help">Arrow keys / WASD · P pause · R restart</p>
+        </div>
       </section>
     </main>
 
-    <footer class="site-footer">© 석문주</footer>
+    <footer class="site-footer section-shell">
+      <span>© 2026 석문주</span>
+      <a href="#home">Back to top ↑</a>
+    </footer>
   </body>
 </html>
